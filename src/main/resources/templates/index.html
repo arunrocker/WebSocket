@@ -14,7 +14,8 @@
 <button id="sendButton">Send</button>
 
 <script>
-    var socket = new SockJS('/chat');  // Connect to WebSocket server
+	var baseUrl = window.location.protocol + "//" + window.location.host;
+    var socket = new SockJS(baseUrl+'/chat');  // Connect to WebSocket server
     var stompClient = Stomp.over(socket);
 
     // Connect to the WebSocket server

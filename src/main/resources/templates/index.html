@@ -15,7 +15,7 @@
 
 <script>
 	var baseUrl = window.location.protocol + "//" + window.location.host;
-    var socket = new SockJS('https://arunchat.up.railway.app'+'/chat');  // Connect to WebSocket server
+    var socket = new SockJS(baseUrl+'/chat');  // Connect to WebSocket server
     var stompClient = Stomp.over(socket);
 
     // Connect to the WebSocket server
@@ -24,6 +24,7 @@
 
         // Subscribe to the /topic/messages topic to receive messages
         stompClient.subscribe('/topic/messages', function(response) {
+			console.log(response);
             var message = response.body;
             var messagesDiv = document.getElementById("messages");
             messagesDiv.innerHTML += "<p>" + message + "</p>";
